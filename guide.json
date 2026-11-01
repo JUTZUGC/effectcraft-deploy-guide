@@ -1,0 +1,110 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "effectcraft",
+    "nameCn": "EffectCraft",
+    "repoName": "effectcraft-deploy-guide",
+    "oneLiner": "合成、图层、关键帧、308 个特效、图层样式、表达式、3D 相机与灯光、渲染队列，做进一个原生应用",
+    "officialRepo": "https://github.com/storytold/effectcraft",
+    "officialDocs": "https://github.com/storytold/effectcraft#readme",
+    "stars": "8.3k",
+    "license": "Apache-2.0",
+    "highlights": [
+      "特效多：308 个内置效果开箱可用",
+      "表达式：能写脚本驱动参数",
+      "3D 空间：相机与灯光做伪三维",
+      "渲染队列：批量排队导出",
+      "原生 Rust：不吃 Electron 那套开销",
+      "Apache-2.0，可商用可二开"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供安装步骤、渲染注意与常见问题。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-11-01",
+    "verification": [
+      [
+        "README 确认 308 个特效、3D 相机灯光与渲染队列",
+        "已核对 2026-11-01"
+      ],
+      [
+        "Release v0.19.0 的 SHA256SUMS.txt 已下载核对（Windows 与 Linux）",
+        "已核对 2026-11-01"
+      ],
+      [
+        "未实测安装与渲染",
+        "说明 2026-11-01"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-11-01"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-11-01"
+      ]
+    ],
+    "deploy": {
+      "type": "binary",
+      "steps": [
+        "curl -fL -o effectcraft.AppImage https://github.com/storytold/effectcraft/releases/download/v0.19.0/effectcraft-0.19.0-linux-x86_64.AppImage",
+        "echo \"9c8b8c5b33f1f04240deaebc854cc53b997cda48cf29ecd7173b43c98049f0c1  effectcraft.AppImage\" | sha256sum -c -",
+        "chmod +x effectcraft.AppImage",
+        "echo \"安装完成：运行 ./effectcraft.AppImage，新建合成加一个特效试渲染\""
+      ],
+      "stepsPs": [
+        "curl.exe -fL -o effectcraft.msi https://github.com/storytold/effectcraft/releases/download/v0.19.0/effectcraft-0.19.0-windows-x64.msi",
+        "$h=(Get-FileHash .\\effectcraft.msi -Algorithm SHA256).Hash.ToLower()",
+        "if ($h -ne \"d6cff47ec0df9731343b9c749537e87425921034259fd91a74f3ad976b10c910\") { throw \"SHA256 校验失败\" }",
+        "Start-Process msiexec.exe -ArgumentList '/i', \"$PWD\\effectcraft.msi\" -Wait",
+        "Write-Host \"安装完成：从开始菜单打开 EffectCraft，新建合成试渲染\""
+      ],
+      "source": "https://github.com/storytold/effectcraft/releases/latest"
+    },
+    "pitfalls": [
+      "Windows 安装被 SmartScreen 拦：核对 SHA256 后仍报，选仍要运行",
+      "AppImage 打不开：先 chmod +x，缺 FUSE 用 --appimage-extract",
+      "渲染很慢：降低分辨率或先渲染预览档",
+      "表达式报错导致画面静止：检查语法与引用图层名",
+      "字体缺失：把工程用到的字体装进系统",
+      "导出无声音：它本身不做音频，声音要另混",
+      "显存不足崩溃：减少 3D 图层与特效层数"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/effectcraft-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/effectcraft-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "EffectCraft",
+    "EffectCraft 安装",
+    "开源 动效 软件",
+    "After Effects 替代",
+    "视觉特效 合成",
+    "effectcraft 教程",
+    "Rust 动效 工具",
+    "关键帧 动画 软件",
+    "effectcraft deploy guide",
+    "本地 渲染 合成"
+  ],
+  "topics": [
+    "motion-graphics",
+    "vfx",
+    "compositing",
+    "rust",
+    "animation",
+    "effectcraft"
+  ]
+}
